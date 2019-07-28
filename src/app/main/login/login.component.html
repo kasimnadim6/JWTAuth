@@ -1,0 +1,26 @@
+<div class="container h-100 d-flex justify-content-center">
+  <div class="jumbotron my-auto">
+    <h1 class="display-4">WELCOME</h1>
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+
+      <div class="form-group">
+        <label>EMPCode</label>
+        <input [class.is-invalid]="EMPCode.invalid &&
+        EMPCode.touched" formControlName="EMPCode" oninput="this.value=this.value.toUpperCase()" type="text" class="form-control">
+        <div *ngIf="EMPCode.invalid &&
+        EMPCode.touched">
+          <small *ngIf="EMPCode.errors?.required" class="text-danger">This Field is Required</small>
+          <small *ngIf="EMPCode.errors?.minlength" class="text-danger">Must have 3 Charecters</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input formControlName="password" type="password" autocomplete="new-password" class="form-control">
+      </div>
+
+      <button type="submit" [disabled]="!loginForm.valid" class="btn btn-info btn-block">LOGIN</button>
+      <a class="btn btn-link btn-block" routerLink="/main/register">I'am New. Register</a>
+    </form>
+  </div>
+</div>
